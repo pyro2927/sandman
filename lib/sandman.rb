@@ -54,6 +54,24 @@ module Sandman
     keys.flatten
   end
 
+  def self.merge_keys_to_services
+
+  end
+
+  def self.add_key_to_provider(p, key = "", title = "")
+    if p.kind_of? Github::Client
+      p.users.keys.create {title: title, key: key}
+    elsif p.kind_of? BitBucket::Client
+      p.users.account.new_key(p.login, {label: title, key: key})
+    end
+  end
+
+  def self.add_key_to_providers(key = "", title = "")
+    @providers.each do |p|
+      Sandman.add_key_to_provider(p, key, title)
+    end
+  end
+
   def self.show_keys
     @providers.each do |p|
       puts p.class.name.split("::").first + ": " + p.login
