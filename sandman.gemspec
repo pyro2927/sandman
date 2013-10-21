@@ -18,8 +18,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "github", "~> 0.7.2"
-  spec.add_runtime_dependency "bitbucket", "~> 0.0.1"
+  spec.add_runtime_dependency "nokogiri"
+  spec.add_runtime_dependency "bitbucket_rest_api", "~> 0.1.3"
+  spec.add_runtime_dependency "github_api", "~> 0.10.2"
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
 end
