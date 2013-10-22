@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["joseph@pintozzi.com"]
   spec.description   = "Sandman is a gem aimed at helping you manage your SSH keys between GitHub and Bitbucket"
   spec.summary       = "Sandman is a gem aimed at helping you manage your SSH keys between GitHub and Bitbucket"
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/pyro2927/sandman"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
