@@ -33,12 +33,23 @@ module Sandman
         Sandman.show_keys(true)
       elsif command == "sync" || command == "merge"
         #TODO: merge this stuff
+      elsif command == "createconfig"
+        if File.exist? "#{Dir.home}/.sandman"
+          puts "Config file already exists"
+        else
+          @config[:accounts] << {:login => "", :password => "", :type => "Github"}
+          @config[:accounts] << {:login => "", :password => "", :type => "BitBucket"}
+          Sandman.write_config "#{Dir.home}/.sandman"
+        end
       end
+      
     end
   end
 
   def self.init
-    Sandman.configure_with "#{Dir.home}/.sandman"
+    if File.exist? "#{Dir.home}/.sandman"
+      Sandman.configure_with "#{Dir.home}/.sandman"
+    end
   end
 
   def self.configure_with(path_to_yaml_file)
