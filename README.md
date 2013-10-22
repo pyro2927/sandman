@@ -76,6 +76,7 @@ Viewing keys will show your existing keys in any authenticated systems.  By defa
 - [ ] Allow arbitrary config file location
 - [ ] Support OAuth
 - [ ] Add in safeguards to prevent people from deleting all of their public keys
+- [ ] Fix crazy nokogiri conflicts between dependancies
 
 ## Contributing
 
