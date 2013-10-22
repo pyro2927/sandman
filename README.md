@@ -45,6 +45,8 @@ To allow access to your GitHub and BitBucket accounts, you'll need to create a Y
       :password: LULZPASSWORD
       :type: BitBucket
 
+You can create a sample config by running `sandman createconfig`.
+
 ### Adding keys
 
 Sandman can add keys pasted into the terminal, though it can also read them from a file.  The name isn't required, though if you don't input one it will use the system's `hostname`.
