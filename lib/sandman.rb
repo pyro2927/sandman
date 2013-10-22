@@ -29,7 +29,9 @@ module Sandman
       command = args[0]
       if command == "show"
         Sandman.show_keys
-      else if command == "sync" || command == "merge"
+      elsif command == "showfull"
+        Sandman.show_keys(true)
+      elsif command == "sync" || command == "merge"
         #TODO: merge this stuff
       end
     end
@@ -133,16 +135,20 @@ module Sandman
     end
   end
 
-  def self.show_keys
+  def self.show_keys(long = false)
     @providers.each do |p|
-      puts p.class.name.split("::").first + ": " + p.login
+      title = p.class.name.split("::").first + ": " + p.login
+      puts title
+      puts "=" * title.length
       Sandman.keys_for_provider(p).each do |k|
         if p.kind_of? Github::Client
-          puts "\t#{k[:title]}: #{k[:key][0..50]}"
+          line = "\t#{k[:title]}: #{k[:key]}"
         elsif p.kind_of? BitBucket::Client
-          puts "\t#{k[:label]}: #{k[:key][0..50]}"
+          line = "\t#{k[:label]}: #{k[:key]}"
         end
+        puts (long ? line : line[0..75])
       end
+      puts "\n"
     end
   end
 end
