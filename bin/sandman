@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'sandman'
+puts Sandman.filter_args(ARGV)

@@ -6,8 +6,23 @@ module Sandman
   @config = {:accounts => []}
   @providers = Array.new
 
+  def self.filter_args(args)
+    Sandman.init
+    if args.count > 1
+      if args[0].downcase == "add"
+        key = args[1]
+        if args.count > 2
+          name = args[2]
+        else
+          name = `hostname`.strip
+        end
+        Sandman.add_key_to_providers(key, name)
+      end
+    end
+  end
+
   def self.init
-    Sandman.configure_with "config"
+    Sandman.configure_with "#{Dir.home}/.sandman"
   end
 
   def self.configure_with(path_to_yaml_file)
@@ -60,9 +75,9 @@ module Sandman
 
   def self.add_key_to_provider(p, key = "", title = "")
     if p.kind_of? Github::Client
-      p.users.keys.create {title: title, key: key}
+      p.users.keys.create {:title => title, :key => key}
     elsif p.kind_of? BitBucket::Client
-      p.users.account.new_key(p.login, {label: title, key: key})
+      p.users.account.new_key(p.login, {:label => title, :key => key})
     end
   end
 
